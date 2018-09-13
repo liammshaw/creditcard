@@ -11,7 +11,7 @@ public class CreditCard
 				Scanner userInput = new Scanner(System.in);
 				System.out.println("Enter a credit card number");
 				long number = userInput.nextInt();
-				
+				//trying to commit
 			}
 
 	}
