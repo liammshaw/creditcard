@@ -3,13 +3,14 @@ public class CreditCard
 	{
 		static int counter = 0;
 		static boolean valid = true;
+		static int runTime = 0;
 		static long [] creditCardNumber = new long[16];
 		public static void main(String[] args)
 			{
-				//askUserForACardNumber();
-				//alternatingDigits();
-				//validateCreditCard();
-				generateValidCreditCards();
+				askUserForACardNumber();
+				alternatingDigits();
+				validateCreditCard();
+				//generateValidCreditCards();
 			}
 		public static void askUserForACardNumber()
 			{
@@ -50,12 +51,14 @@ public class CreditCard
 						System.out.println("");
 						valid = true;
 						counter++;
+						runTime++;
 					}
 				else 
 					{
-						System.out.println("This is a not valid credit card");
+						System.out.println(" This is a not valid credit card");
 						System.out.println("");
 						valid = false; 
+						runTime++;
 					}
 			}
 		public static void generateValidCreditCards()
@@ -64,11 +67,13 @@ public class CreditCard
 					{
 						for(int i = 0; i < 16;i++) 
 							{
-								creditCardNumber[i] = (int)Math.random()*9;
+								creditCardNumber[i] = (long)(Math.random()*10);
 								System.out.print(creditCardNumber[i]);
 							}
 						alternatingDigits();
 						validateCreditCard();
-					}while (counter <= 100);
+					}while (counter < 100);
+				System.out.println("There are " + counter + " valid card numbers");
+				System.out.println("The system ran "+ runTime + " times");
 			}
 	}
