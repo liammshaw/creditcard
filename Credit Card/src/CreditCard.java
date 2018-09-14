@@ -1,11 +1,15 @@
 import java.util.Scanner;
 public class CreditCard
 	{
+		static int counter = 0;
+		static boolean valid = true;
 		static long [] creditCardNumber = new long[16];
 		public static void main(String[] args)
 			{
-				askUserForACardNumber();
-				alternatingDigits();
+				//askUserForACardNumber();
+				//alternatingDigits();
+				//validateCreditCard();
+				generateValidCreditCards();
 			}
 		public static void askUserForACardNumber()
 			{
@@ -31,8 +35,40 @@ public class CreditCard
 								lastDigit = creditCardNumber[i]/10;
 								creditCardNumber[i]= firstDigit + lastDigit;
 							}
-						System.out.println(creditCardNumber[i]);
 					}
 			}
-
+		public static void validateCreditCard()
+			{
+				long sum = 0;
+				for (int i = 0; i < 16; i ++)
+					{
+						sum = creditCardNumber[i] + sum;
+					}
+				if (sum%10 == 0)
+					{
+						System.out.println(" This is a valid credit card");
+						System.out.println("");
+						valid = true;
+						counter++;
+					}
+				else 
+					{
+						System.out.println("This is a not valid credit card");
+						System.out.println("");
+						valid = false; 
+					}
+			}
+		public static void generateValidCreditCards()
+			{
+				do
+					{
+						for(int i = 0; i < 16;i++) 
+							{
+								creditCardNumber[i] = (int)Math.random()*9;
+								System.out.print(creditCardNumber[i]);
+							}
+						alternatingDigits();
+						validateCreditCard();
+					}while (counter <= 100);
+			}
 	}
