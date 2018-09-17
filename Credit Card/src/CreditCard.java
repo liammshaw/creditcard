@@ -1,27 +1,40 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
 public class CreditCard
 	{
 		static int counter = 0;
 		static boolean valid = true;
 		static int runTime = 0;
 		static long [] creditCardNumber = new long[16];
-		public static void main(String[] args)
+		public static void main(String[] args) throws IOException
 			{
 				askUserForACardNumber();
-				alternatingDigits();
-				validateCreditCard();
 				//generateValidCreditCards();
 			}
-		public static void askUserForACardNumber()
+		public static void askUserForACardNumber() throws IOException 
 			{
-				Scanner userInput = new Scanner(System.in);
-				System.out.println("Enter a credit card number");
-				long number = userInput.nextLong();
-				for(int i = 15; i >= 0; i--)
+				Scanner userInputOne = new Scanner(System.in);
+				System.out.println("Would you like to enter a Credit Card(1) or use a text file(2)?");
+				int userChoice = userInputOne.nextInt();
+				if (userChoice == 1)
 					{
-						creditCardNumber [i] = number % 10;
-						number = number/10;
+						Scanner userInputTwo = new Scanner(System.in);
+						System.out.println("Enter the Credit Card number");
+						long number = userInputTwo.nextLong();
+						for(int i = 15; i >= 0; i--)
+							{
+								creditCardNumber [i] = number % 10;
+								number = number/10;
+							}
+						alternatingDigits();
+						validateCreditCard();
 					}
+				else 
+					{
+						readFile();
+					}
+				
 			}
 		public static void alternatingDigits()
 			{
@@ -75,5 +88,13 @@ public class CreditCard
 					}while (counter < 100);
 				System.out.println("There are " + counter + " valid card numbers");
 				System.out.println("The system ran "+ runTime + " times");
+			}
+		public static void readFile() throws IOException 
+			{
+				Scanner newFile = new Scanner(new File("creditCardNumbers.txt"));
+				do 
+					{
+						System.out.println(newFile.nextLong());
+					}while(newFile.hasNext());
 			}
 	}
