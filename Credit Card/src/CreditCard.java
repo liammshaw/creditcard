@@ -60,7 +60,8 @@ public class CreditCard
 					}
 				if (sum%10 == 0)
 					{
-						System.out.println(" This is a valid credit card");
+						System.out.println(" ");
+						System.out.println("This is a valid credit card");
 						System.out.println("");
 						valid = true;
 						counter++;
@@ -68,7 +69,8 @@ public class CreditCard
 					}
 				else 
 					{
-						System.out.println(" This is a not valid credit card");
+						System.out.println(" ");
+						System.out.println("This is a not valid credit card");
 						System.out.println("");
 						valid = false; 
 						runTime++;
@@ -96,13 +98,16 @@ public class CreditCard
 				do 
 					{
 						 number = newFile.nextLong();
-						 for (int i = 0; i < 15; i++)
+						 for (int i = 15; i >= 0; i--)
 							 {
 								 creditCardNumber[i] = number %10;
 								 number = number/10;
+								 System.out.print(creditCardNumber[i]);
 							 }
 						 alternatingDigits();
 						 validateCreditCard();
 					}while(newFile.hasNext());
+				System.out.println("There are " + counter + " valid credit cards");
 			}
+		
 	}
