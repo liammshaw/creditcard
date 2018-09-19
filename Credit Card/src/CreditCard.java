@@ -92,10 +92,17 @@ public class CreditCard
 		public static void readFile() throws IOException 
 			{
 				Scanner newFile = new Scanner(new File("creditCardNumbers.txt"));
-				long numbers;
+				long number;
 				do 
 					{
-						 numbers = newFile.nextLong();
+						 number = newFile.nextLong();
+						 for (int i = 0; i < 15; i++)
+							 {
+								 creditCardNumber[i] = number %10;
+								 number = number/10;
+							 }
+						 alternatingDigits();
+						 validateCreditCard();
 					}while(newFile.hasNext());
 			}
 	}
