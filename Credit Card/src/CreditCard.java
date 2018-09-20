@@ -9,8 +9,8 @@ public class CreditCard
 		static long [] creditCardNumber = new long[16];
 		public static void main(String[] args) throws IOException
 			{
-				askUserForACardNumber();
-				//generateValidCreditCards();
+				//askUserForACardNumber();
+				generateValidCreditCards();
 			}
 		public static void askUserForACardNumber() throws IOException 
 			{
@@ -98,10 +98,13 @@ public class CreditCard
 				do 
 					{
 						 number = newFile.nextLong();
-						 for (int i = 15; i >= 0; i--)
+						 for(int i = 15; i >= 0; i--)
+								{
+									creditCardNumber [i] = number % 10;
+									number = number/10;
+								}
+						 for(int i = 0; i <16; i++)
 							 {
-								 creditCardNumber[i] = number %10;
-								 number = number/10;
 								 System.out.print(creditCardNumber[i]);
 							 }
 						 alternatingDigits();
